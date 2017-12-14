@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    form(action="/" method="POST")
+      label Add list of song titles - one per line, artist name and song title separated by '|'
+      textarea#songlist(name="songlist", rows="10", placeholder="[Artist Name] | [Song Title]\n[Artist Name] | [Song Title]")
+      button#submit Build My Songbook
+    
+    if results
+      a#Download.downloadLink Download Songbook as PDF
+      #output!= results
+
+      script(src="/javascripts/edit-results.js")

@@ -9,7 +9,7 @@ function buildInnerTabHTML(tab){
   return `
   <h1><a href="${tab.url}" target="_blank">${tab.name}</a></h1>
   <h2>${tab.artist}</h2>
-  <div class="tabContent">
+  <div class="tabContent" contenteditable="true">
     ${tab.content.html.replace(/\n|\r/g, '<br>').replace(/\s{3,}/g, match => match.split('').map(t => '<span>&nbsp;</span>').join(''))}
   </div>
   `
@@ -104,6 +104,7 @@ router.get('/', function(req, res, next) {
 
 //post /
 router.post('/', function(req, res, next){
+  console.log(req.originalUrl)
   getTabs(req.body.songlist.split(/\n/)).then(results => {
     res.render('index', { title: 'Results', results: results.join('') })
   })

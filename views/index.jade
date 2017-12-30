@@ -5,12 +5,26 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     form(action="/" method="POST")
-      label Add list of song titles - one per line, artist name and song title separated by '|'
-      textarea#songlist(name="songlist", rows="10", placeholder="[Artist Name] | [Song Title]\n[Artist Name] | [Song Title]")
+      label Add list of songs - one per line, artist name and song title separated by '|'
+      textarea#songlist(name="songlist", rows="10", placeholder="Artist Name | Song Title\nArtist Name | Song Title")
       button#submit Build My Songbook
     
     if results
+      h4 Editing Instructions
+      ul.instructions
+        li Editing a Tab
+          ul
+            li Tabs are directly editable, just click into the section and make your edits.
+            li No save is required, any edits made will automatically be included in the PDF download.
+        li Replacing a Tab
+          ul
+            li Click the song title to be taken to the tab's page on Ultimate Guitar Tabs.
+            li From there, select from the list of alternates to find the one you'd prefer.
+            li Copy the URL of that tab
+            li Return to this page, click "Replace Tab", and paste the URL there
+            
       a#Download.downloadLink Download Songbook as PDF
+      
       #output!= results
 
-      script(src="/javascripts/edit-results.js")
+      script(src="/javascripts/compiled/edit-results.js")
